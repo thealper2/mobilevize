@@ -26,6 +26,7 @@ class GuestBook extends StatefulWidget {
 class _GuestBookState extends State<GuestBook> {
   final _formKey = GlobalKey<FormState>(debugLabel: '_GuestBookState');
   final _controller = TextEditingController();
+  bool checkboxValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +77,15 @@ class _GuestBookState extends State<GuestBook> {
         for (var message in widget.messages)
           Paragraph('${message.name}: ${message.message}'),
         const SizedBox(height: 8),
+        CheckboxListTile(
+          value: checkboxValue,
+          onChanged: (newValue) {
+            setState(() {
+              checkboxValue = newValue!;
+            });
+          },
+          title: Text('Attend'),
+        ),
       ],
     );
   }
